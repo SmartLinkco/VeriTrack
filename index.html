@@ -11,6 +11,95 @@
 <!-- Font Google -->
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    :root {
+      --primary-dark: #200557;
+      --primary-mid: #341179;
+      --primary-light: #4a1d9f;
+      --accent: #7a3aff;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f9f9f9;
+    }
+    
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .form-body {
+      padding: 30px;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+    
+    .form-input:focus {
+      border-color: var(--primary-mid);
+      box-shadow: 0 0 0 3px rgba(58, 28, 159, 0.2);
+    }
+    
+    .btn-submit {
+      background: linear-gradient(to right, var(--primary-dark), var(--accent));
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(58, 28, 159, 0.2);
+    }
+
+    .centre {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .centre p {
+      font-size: 14px;
+      color: #555;
+    }
+    
+    .confirmation-message {
+      display: none;
+      text-align: center;
+      padding: 40px;
+    }
+    
+    .confirmation-icon {
+      font-size: 60px;
+      color: #4BB543;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 
 <body>
@@ -44,7 +133,7 @@
               <p class="banner-text white">Streamline your attendance process with VeriTrack's cutting-edge QR-Code, real-time liveliness check technology. Accurate, efficient, and secure.</p>
               <ul>
               <li><a href="#check-In"><img src="images/appstore.png" class="wow fadeInUp" data-wow-delay="0.4s"/></a></li>
-              <li><a href="#"><img src="images/playstore.png" class="wow fadeInUp" data-wow-delay="0.7s"/></a></li>
+              <li><a href="https://calendly.com/info-veritrack/30min"><img src="images/playstore.png" class="wow fadeInUp" data-wow-delay="0.7s"/></a></li>
             </ul>
           </div>
         </div>
@@ -184,48 +273,150 @@
 
 <!-------Request Start-------> 
 <section id="check-In"class="request section-padding prelative" data-scroll-index='7'>
-	<div class="container">
+	<div class="form-container">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="sectioner-header text-center">
+				<div class="gradient-bg text-center">
 					<h3>Request an Attendance System</h3>
 					<span class="line"></span>
 					<p>Let us know your requirements, and we'll tailor a solution to meet your needs.</p>
 				</div>
 				<div class="section-content">
-					<form id="request_form" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="POST" style="background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-						<div class="row">
-							<div class="col-md-6">
-								<input type="text" id="client_name" class="form-input w-100" name="client-name" placeholder="Your Name" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-							</div>
-							<div class="col-md-6">
-								<input type="email" id="client_email" class="form-input w-100" name="client-email" placeholder="Your Email" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<input type="text" id="organization" class="form-input w-100" name="organization" placeholder="Organization Name" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-							</div>
-							<div class="col-md-6">
-								<input type="text" id="phone" class="form-input w-100" name="phone" placeholder="Phone Number" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<label for="use_case" style="font-weight: bold; margin-bottom: 5px; display: block;">Select Your Use Case:</label>
-								<select id="use_case" class="form-input w-100" name="use-case" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-									<option value="" disabled selected>Select an option</option>
-									<option value="Employee Attendance">Employee Attendance</option>
-									<option value="Event Management">Event Management</option>
-									<option value="Visitor Management">Visitor Management</option>
-									<option value="Educational Institution">Educational Institution</option>
-									<option value="Other">Other</option>
-								</select>
-							</div>
-						</div>
-						<textarea class="form-input w-100" id="additional_info" name="additional-info" placeholder="Additional Information (Optional)" style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; height: 100px;"></textarea>
-						<button class="btn-grad w-100 text-uppercase" type="submit" name="submit" style="background: #007bff; color: #fff; padding: 10px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Submit Request</button>
-					</form>
+          <form id="custom_request_form" class="form-body" action="https://script.google.com/macros/s/AKfycbxyzWmED5TbKY3BIdUFFdjp_nBXhkOA8vXdfr3qFDx53LIyysnrs7yWoclFZTGQc469/exec" method="POST" style="background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <!-- Client Basics -->
+            <h5>1. Client Basics</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text" id="full_name" class="form-input w-100" name="full-name" placeholder="Full Name" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+              </div>
+              <div class="col-md-6">
+                <input type="text" id="company_name" class="form-input w-100" name="company-name" placeholder="Company/Organization Name" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <input type="email" id="email" class="form-input w-100" name="email" placeholder="Email" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+              </div>
+              <div class="col-md-6">
+                <input type="tel" id="phone" class="form-input w-100" name="phone" placeholder="Phone Number" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <select id="industry" class="form-input w-100" name="industry" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                  <option value="" disabled selected>Industry</option>
+                  <option value="Education">Education</option>
+                  <option value="Corporate">Corporate</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Events">Events</option>
+                  <option value="Construction">Construction</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- System Requirements -->
+            <h5>2. System Requirements</h5>
+            <div class="row">
+              <div class="col-md-12">
+              <label style="font-weight: bold;">Use Case:</label>
+              <select id="use_case" class="form-input w-100" name="use-case" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                <option value="" disabled selected>Select Use Case</option>
+                <option value="Employee Attendance">Employee Attendance</option>
+                <option value="Student/Class Tracking">Student/Class Tracking</option>
+                <option value="Event Check-In">Event Check-In</option>
+                <option value="Remote Workforce">Remote Workforce</option>
+                <option value="Visitor Management">Visitor Management</option>
+              </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+              <label style="font-weight: bold;">Key Features Needed:</label>
+              <div style="margin-bottom: 15px;">
+                <label><input type="checkbox" name="key-features[]" value="QR Code Scanning"> QR Code Scanning</label><br>
+                <!-- <label><input type="checkbox" name="key-features[]" value="Facial Recognition"> Facial Recognition</label><br> -->
+                <label><input type="checkbox" name="key-features[]" value="GPS/Geofencing"> GPS/Geofencing</label><br>
+                <!-- <label><input type="checkbox" name="key-features[]" value="Biometric Integration"> Biometric Integration</label><br> -->
+                <label><input type="checkbox" name="key-features[]" value="Automated Reports"> Automated Reports</label><br>
+                <label><input type="checkbox" name="key-features[]" value="Payroll Sync"> Payroll Sync</label><br>
+                <label><input type="checkbox" name="key-features[]" value="Multi-location Support"> Multi-location Support</label>
+              </div>
+              </div>
+            </div>
+
+            <!-- Technical Preferences -->
+            <h5>3. Technical Preferences</h5>
+            <div class="row">
+              <div class="col-md-12">
+              <label style="font-weight: bold;">Platform:</label>
+              <select id="platform" class="form-input w-100" name="platform" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                <option value="" disabled selected>Select Platform</option>
+                <!-- <option value="Mobile App">Mobile App (iOS/Android)</option> -->
+                <option value="Web-Based">Web-Based</option>
+                <option value="Kiosk/Hardware Setup">Kiosk/Hardware Setup</option>
+                <!-- <option value="Hybrid">Hybrid (App + Web)</option> -->
+              </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <textarea class="form-input w-100" id="integration_needs" name="integration-needs" placeholder="List any existing software (e.g., HR tools like BambooHR, Slack, Zoom) you’d like to integrate with." style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; height: 100px;"></textarea>
+              </div>
+            </div>
+
+            <!-- Scale & Timeline -->
+            <h5>4. Scale & Timeline</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <select id="number_of_users" class="form-input w-100" name="number-of-users" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                  <option value="" disabled selected>Number of Users</option>
+                  <option value="1–50">1–50</option>
+                  <option value="51–200">51–200</option>
+                  <option value="201–500">201–500</option>
+                  <option value="500+">500+</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label style="font-weight: bold;">Preferred Deployment Timeline:</label><br>
+                <input type="radio" name="deployment-timeline" value="Immediate"> Immediate<br>
+                <input type="radio" name="deployment-timeline" value="1–3 Months"> 1–3 Months<br>
+                <input type="radio" name="deployment-timeline" value="Flexible"> Flexible<br>
+              </div>
+            </div>
+
+            <!-- Budget & Customization -->
+            <h5>5. Budget & Customization</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <select id="budget_range" class="form-input w-100" name="budget-range" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                  <option value="" disabled selected>Budget Range</option>
+                  <option value="<1K"><1K</option>
+                  <option value="1K–5K">1K–5K</option>
+                  <option value="5K–10K">5K–10K</option>
+                  <option value="Custom Quote">Custom Quote</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <textarea class="form-input w-100" id="additional_requests" name="additional-requests" placeholder="Specify branding needs (e.g., white-labeling, custom colors/logo)." style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; height: 100px;"></textarea>
+              </div>
+            </div>
+
+            <!-- Submission & Follow-Up -->
+            <h5>6. Submission & Follow-Up</h5>
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn-submit btn-grad w-100 text-uppercase" type="submit" name="submit">Get My Custom Proposal</button>
+                <p style="margin-top: 10px; font-size: 12px; color: #555;">Disclaimer: We’ll contact you within 24 hours to discuss your requirements!</p>
+              </div>
+            </div>
+          </form>
+          <!-- Confirmation Message (hidden initially) -->
+          <div id="confirmation-message" class="confirmation-message">
+            <div class="confirmation-icon">✓</div>
+            <h3>Request Submitted Successfully!</h3>
+            <p>We've sent a confirmation email with your request details.</p>
+            <p>Our team will contact you within <strong>24 hours</strong>.</p>
+          </div>
 				</div>
 			</div>
 		</div>
@@ -271,6 +462,49 @@
 </section>
 
 <!-------Team End-------> 
+
+<section class="consultation section-padding prelative" data-scroll-index='8'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="sectioner-header text-center">
+          <h3>Let’s Build Your Perfect Attendance Solution – Free Consultation</h3>
+          <span class="line"></span>
+          <p>Join us for a 30-minute discovery call to explore how our VeriTracks attendance system can be tailored to your organization’s unique needs. Whether you’re managing employees, students, or event attendees, we’ll help you design a solution that saves time, eliminates errors, and boosts accountability.</p>
+        </div>
+        <div class="section-content">
+          <div class="row">
+            <div class="col-md-4 centre">
+              <h5>Why Book?</h5>
+              <p>Personalized demo of features you care about</p>
+              <p>No obligation – just honest advice</p>
+              <p>Custom proposal delivered within 24 hours</p>
+            </div>
+            <div class="col-md-4 centre">
+              <h5>What We’ll Cover:</h5>
+              <p>Your Challenges: Pain points with current tracking methods</p>
+              <p>Must-Have Features: QR scanning, GPS, integrations, etc.</p>
+              <p>Technical Fit: Web, mobile, or hybrid? On-site or cloud?</p>
+              <p>Timeline & Budget: Deployment goals and investment range</p>
+              <p>Q&A: Get expert answers in real time</p>
+            </div>
+            <div class="col-md-4 centre">
+              <h5>Who Should Attend:</h5>
+              <p>HR Managers</p>
+              <p>School Administrators</p>
+              <p>Event Coordinators</p>
+              <p>IT Decision Makers</p>
+            </div>
+          </div>
+        </div>
+          <div class="text-center">
+            <a href="https://calendly.com/info-veritrack/30min" class="btn-submit btn-grad text-uppercase">Schedule your free session today! Limited slots available.</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-------Testimonial Start------->
 <section class="testimonial section-padding" data-scroll-index='4'>
@@ -434,7 +668,7 @@
         <div class="section-content text-center">
           <ul>
             <li><a href="#check-In"><img src="images/appstore.png" class="wow fadeInUp" data-wow-delay="0.4s"/></a></li>
-            <li><a href="#"><img src="images/playstore.png" class="wow fadeInUp" data-wow-delay="0.7s"/></a></li>
+            <li><a href="https://calendly.com/info-veritrack/30min"><img src="images/playstore.png" class="wow fadeInUp" data-wow-delay="0.7s"/></a></li>
           </ul>
         </div>
       </div>
@@ -524,6 +758,62 @@ $(window).on("load",function (){
 	});
 });
 
+document.getElementById('custom_request_form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const submitBtn = form.querySelector('button[type="submit"]');
+  
+  // Disable button during submission
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+  
+  try {
+    // Convert form data to JSON
+    const jsonData = {};
+    formData.forEach((value, key) => {
+      // Handle checkboxes/multi-select
+      if (key.endsWith('[]')) {
+        const cleanKey = key.replace('[]', '');
+        if (!jsonData[cleanKey]) jsonData[cleanKey] = [];
+        jsonData[cleanKey].push(value);
+      } else {
+        jsonData[key] = value;
+      }
+    });
+
+    // Use JSONP proxy to bypass CORS
+    const script = document.createElement('script');
+    const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+    
+    window[callbackName] = function(data) {
+      delete window[callbackName];
+      document.body.removeChild(script);
+      
+      if (data.result === "success") {
+        form.style.display = 'none';
+        document.getElementById('confirmation-message').style.display = 'block';
+      } else {
+        alert("Error: " + (data.error || "Submission failed"));
+      }
+    };
+
+    // Build the JSONP URL
+    const url = new URL(form.action);
+    url.searchParams.set('callback', callbackName);
+    url.searchParams.set('data', JSON.stringify(jsonData));
+    
+    script.src = url.toString();
+    document.body.appendChild(script);
+
+  } catch (error) {
+    console.error("Submission error:", error);
+    alert("Error submitting form. Please try again.");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Get My Custom Proposal';
+  }
+});
 </script>
 </body>
 </html>
