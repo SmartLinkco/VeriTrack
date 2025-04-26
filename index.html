@@ -405,7 +405,7 @@
             <h5>6. Submission & Follow-Up</h5>
             <div class="row">
               <div class="col-md-12">
-                <button class="btn-submit btn-grad w-100 text-uppercase" type="submit" name="submit">Get My Custom Proposal</button>
+                <button id="submission" class="btn-submit btn-grad w-100 text-uppercase" type="submit" name="submit">Get My Custom Proposal</button>
                 <p style="margin-top: 10px; font-size: 12px; color: #555;">Disclaimer: We’ll contact you within 24 hours to discuss your requirements!</p>
               </div>
             </div>
@@ -414,7 +414,7 @@
           <div id="confirmation-message" class="confirmation-message">
             <div class="confirmation-icon">✓</div>
             <h3>Request Submitted Successfully!</h3>
-            <p>We've sent a confirmation email with your request details.</p>
+            <p>We've sent a confirmation email with your request details. Kindly check your inbox / spam box.</p>
             <p>Our team will contact you within <strong>24 hours</strong>.</p>
           </div>
 				</div>
@@ -762,7 +762,7 @@ document.getElementById('custom_request_form').addEventListener('submit', async 
   e.preventDefault();
   const form = e.target;
   const formData = new FormData(form);
-  const submitBtn = form.querySelector('button[type="submit"]');
+  const submitBtn = document.getElementById('submission');
   
   // Disable button during submission
   submitBtn.disabled = true;
