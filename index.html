@@ -35,6 +35,9 @@
 <meta property="og:image:type" content="image/png">
 <meta name="twitter:image:alt" content="VeriTrack Logo">
 <meta property="og:image:alt" content="VeriTrack Logo">
+<meta name="theme-color" content="#200557">
+<link rel="icon" href="images/veritrack-logo.png" type="image/png">
+<link rel="apple-touch-icon" href="images/veritrack-logo.png">
 <style>
     :root {
       --primary-dark: #200557;
@@ -88,9 +91,8 @@
     }
     
     .btn-submit {
-      background: linear-gradient(to right, var(--primary-dark), var(--accent));
-      color: white;
-      border: none;
+      color: black;
+      border: 2px solid var(--accent);
       padding: 14px 28px;
       border-radius: 6px;
       font-weight: bold;
@@ -99,8 +101,10 @@
     }
     
     .btn-submit:hover {
+      background: linear-gradient(to right, var(--accent), var(--primary-dark));
+      color: white;
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(58, 28, 159, 0.2);
+      box-shadow: 0 6px 12px rgba(122, 58, 255, 0.2);
     }
 
     .centre {
@@ -111,9 +115,35 @@
       text-align: center;
     }
 
-    .centre p {
+    .book {
+      flex: 1;
+      background: linear-gradient(to right, var(--primary-dark), var(--accent));
+      color: white;
+      padding: 10px 10px;
+      margin: 20px 5px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .row-mobile {
+      flex-direction: column;
+      margin: 10px;
+      flex-wrap: wrap;
+      }
+    }
+
+    .book:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(58, 28, 159, 0.2);
+    }
+
+    .book p {
       font-size: 14px;
-      color: #555;
+      color: #fff;
     }
     
     .confirmation-message {
@@ -302,7 +332,7 @@
                 }
             }
 
-            @media (max-width: 480px) {
+            @media (max-width: 779px) {
                 .pricing-header h1 {
                     font-size: 1.5rem;
                 }
@@ -810,14 +840,14 @@
           <p>Join us for a 30-minute discovery call to explore how our VeriTracks attendance system can be tailored to your organization’s unique needs. Whether you’re managing employees, students, or event attendees, we’ll help you design a solution that saves time, eliminates errors, and boosts accountability.</p>
         </div>
         <div class="section-content">
-          <div class="row">
-            <div class="col-md-4 centre">
+          <div class="row row-mobile">
+            <div class="book col-md-4 centre">
               <h5>Why Book?</h5>
               <p>Personalized demo of features you care about</p>
               <p>No obligation – just honest advice</p>
               <p>Custom proposal delivered within 24 hours</p>
             </div>
-            <div class="col-md-4 centre">
+            <div class="book col-md-4 centre">
               <h5>What We’ll Cover:</h5>
               <p>Your Challenges: Pain points with current tracking methods</p>
               <p>Must-Have Features: QR scanning, GPS, integrations, etc.</p>
@@ -825,7 +855,7 @@
               <p>Timeline & Budget: Deployment goals and investment range</p>
               <p>Q&A: Get expert answers in real time</p>
             </div>
-            <div class="col-md-4 centre">
+            <div class="book col-md-4 centre">
               <h5>Who Should Attend:</h5>
               <p>HR Managers</p>
               <p>School Administrators</p>
