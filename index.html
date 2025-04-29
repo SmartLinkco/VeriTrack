@@ -1169,8 +1169,8 @@ document.getElementById('custom_request_form').addEventListener('submit', async 
 });
 
 function selectPlan(plan, amount) {
-  // Redirect to homepage
-  window.location.href = "#check-In";
+  // Scroll to the section with data-scroll-index='7'
+  document.querySelector("[data-scroll-index='7']").scrollIntoView({ behavior: 'smooth' });
 }
 </script>
 </body>
