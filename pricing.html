@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>VeriTrack Attendance System</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<!-- Font Google -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VeriTrack Attendance System - Revolutionizing attendance management with cutting-edge QR-Code and real-time liveliness check technology. Accurate, efficient, and secure.">
+<meta name="keywords" content="attendance system, QR code attendance, real-time attendance, employee attendance, student tracking, event check-in, GPS attendance, biometric attendance, payroll integration, attendance management software">
+<meta name="author" content="VeriTrack Co.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="VeriTrack Attendance System - Revolutionizing Attendance Management">
+<meta property="og:description" content="Streamline your attendance process with VeriTrack's advanced technology. Accurate, efficient, and secure solutions for businesses and organizations.">
+<meta property="og:image" content="https://veri-track.vercel.app/images/veritrack-logo.png">
+<meta property="og:url" content="https://veri-track.vercel.app">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VeriTrack Attendance System - Revolutionizing Attendance Management">
+<meta name="twitter:description" content="Discover VeriTrack's cutting-edge attendance solutions. Accurate, efficient, and secure for businesses of all sizes.">
+<meta name="twitter:image" content="https://veri-track.vercel.app/images/veritrack-logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="images/veritrack-logo.png" type="image/png">
+<meta property="og:image" content="images/veritrack-logo.png">
+<meta name="twitter:image" content="images/veritrack-logo.png">
+<meta property="og:image" content="https://veri-track.vercel.app/images/veritrack-logo.png">
+<meta name="twitter:image" content="https://veri-track.vercel.app/images/veritrack-logo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:image:alt" content="VeriTrack Logo">
+<meta property="og:image:alt" content="VeriTrack Logo">
+<style>
+    :root {
+      --primary-dark: #200557;
+      --primary-mid: #341179;
+      --primary-light: #4a1d9f;
+      --accent: #7a3aff;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f9f9f9;
+    }
+    
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .form-body {
+      padding: 30px;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+
+    .mobile-padding {
+      margin: 0 15px;
+    }
+    
+    .form-input:focus {
+      border-color: var(--primary-mid);
+      box-shadow: 0 0 0 3px rgba(58, 28, 159, 0.2);
+    }
+    
+    .btn-submit {
+      background: linear-gradient(to right, var(--primary-dark), var(--accent));
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(58, 28, 159, 0.2);
+    }
+
+    .centre {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .centre p {
+      font-size: 14px;
+      color: #555;
+    }
+    
+    .confirmation-message {
+      display: none;
+      text-align: center;
+      padding: 40px;
+    }
+    
+    .confirmation-icon {
+      font-size: 60px;
+      color: #4BB543;
+      margin-bottom: 20px;
+    }
+    .pricing-container {
+            max-width: 1200px;
+            /* margin: 150px auto; */
+            padding: 120px;
+            background: linear-gradient(to left, #7a60ff, #cd9ffa);
+            background-image: linear-gradient(to left, rgb(122, 96, 255), rgb(205, 159, 250));
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: initial;
+            border: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .pricing-header h1 {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        .plan-selector {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .plan-option {
+            flex: 1 1 calc(25% - 20px);
+            background: #f0f8ff;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .plan-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .plan-option h3 {
+            font-size: 1.5rem;
+            color: #007bff;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .period {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .renew-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .renew-section a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .renew-section a:hover {
+            background: #0056b3;
+        }
+        .plan-option ul.features {
+            list-style: none;
+            padding: 5px;
+            margin: 15px 0 0;
+            text-align: center;
+            background: linear-gradient(to left, #7a60ff, #cd9ffa);
+            background-image: linear-gradient(to left, rgb(122, 96, 255), rgb(205, 159, 250));
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: initial;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .plan-option ul.features li {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 8px;
+            }
+
+            .free-plan {
+            background: #f8f9fa;
+            border: 2px dashed #6c757d;
+            }
+
+            .free-plan:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(108, 117, 125, 0.2);
+            }
+
+            .free-plan h3 {
+            color: #6c757d;
+            }
+
+            .free-plan .price {
+            color: #6c757d;
+            }
+            @media (max-width: 768px) {
+                .pricing-container {
+                    padding: 120px 20px;
+                }
+
+                .plan-selector {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+
+                .plan-option {
+                    flex: 1 1 100%;
+                }
+
+                .pricing-header h1 {
+                    font-size: 1.8rem;
+                }
+
+                .renew-section a {
+                    font-size: 0.9rem;
+                    padding: 8px 16px;
+                }
+
+                .contact-info {
+                    padding: 15px;
+                }
+
+                .contact-item p {
+                    font-size: 0.9rem;
+                }
+
+                .navbar .navbar-brand img {
+                    width: 50px;
+                }
+
+                .navbar-nav .nav-item .nav-link {
+                    font-size: 0.9rem;
+                }
+
+                .download ul li img {
+                    width: 120px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .pricing-header h1 {
+                    font-size: 1.5rem;
+                }
+
+                .plan-option h3 {
+                    font-size: 1.2rem;
+                }
+
+                .price {
+                    font-size: 1.5rem;
+                }
+
+                .period {
+                    font-size: 0.8rem;
+                }
+
+                .plan-option ul.features li {
+                    font-size: 0.8rem;
+                }
+
+                .renew-section a {
+                    font-size: 0.8rem;
+                }
+
+                .contact-item p {
+                    font-size: 0.8rem;
+                }
+
+                .download ul li img {
+                    width: 100px;
+                }
+                .navbar .navbar-brand img {
+                    width: 150px;
+                }
+            }
+  </style>
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container"> <img src="images/veritrack logo.png" alt="logo" width="70px" style="margin: 0px 10px; border-top-right-radius: 20px; border-bottom-left-radius: 20px;"><a class="navbar-brand navbar-logo" href="#"><img src="images/logo.png" alt="logo" class="logo-1"> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"> <a class="nav-link" href="index.html" data-scroll-nav="0">Home</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="1">About</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="2">Features</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="3">Team</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="pricing.html">Our Pricing</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="5">Faq</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="6">Contact</a> </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->   
+    <div class="pricing-container">
+        <div class="pricing-header">
+            <h1>Our Subscription Model</h1>
+        </div>
+        <div class="plan-selector">
+            <!-- Monthly Plan -->
+            <div class="plan-option" data-plan="Monthly" data-amount="200" onclick="selectPlan('Monthly', 200)">
+            <h3>Monthly</h3>
+            <div class="price">₵200</div>
+            <div class="period">per month</div>
+            <ul class="features">
+                <li>QR Code Scanning</li>
+                <li>GPS/Geofencing</li>
+                <li>Automated Reports</li>
+                <li>Payroll Sync</li>
+                <li>Multi-location Support</li>
+                <li>Live Photo Capture</li>
+                <li>Unlimited Users</li>
+            </ul>
+            </div>
+            <hr>
+
+            <!-- Quarterly Plan -->
+            <div class="plan-option" data-plan="Quarterly" data-amount="510" onclick="selectPlan('Quarterly', 510)">
+            <h3>Quarterly</h3>
+            <div class="price">₵510</div>
+            <div class="period">3 months (15% Discount)</div>
+            <ul class="features">
+                <li>QR Code Scanning</li>
+                <li>GPS/Geofencing</li>
+                <li>Automated Reports</li>
+                <li>Payroll Sync</li>
+                <li>Multi-location Support</li>
+                <li>Live Photo Capture</li>
+                <li>Unlimited Users</li>
+            </ul>
+            </div>
+            <hr>
+
+            <!-- Semiannual Plan -->
+            <div class="plan-option" data-plan="Semiannually" data-amount="960" onclick="selectPlan('Semiannually', 960)">
+            <h3>Semiannually</h3>
+            <div class="price">₵960</div>
+            <div class="period">6 months (20% Discount)</div>
+            <ul class="features">
+                <li>QR Code Scanning</li>
+                <li>GPS/Geofencing</li>
+                <li>Automated Reports</li>
+                <li>Payroll Sync</li>
+                <li>Multi-location Support</li>
+                <li>Live Photo Capture</li>
+                <li>Unlimited Users</li>
+            </ul>
+            </div>
+            <hr>
+
+            <!-- Annual Plan -->
+            <div class="plan-option" data-plan="Annual" data-amount="1800" onclick="selectPlan('Annual', 1800)">
+            <h3>Annual</h3>
+            <div class="price">₵1,800</div>
+            <div class="period">per year (2 months free)</div>
+            <ul class="features">
+                <li>QR Code Scanning</li>
+                <li>GPS/Geofencing</li>
+                <li>Automated Reports</li>
+                <li>Payroll Sync</li>
+                <li>Multi-location Support</li>
+                <li>Live Photo Capture</li>
+                <li>Unlimited Users</li>
+            </ul>
+            </div>
+            <hr>
+
+            <!-- Free Plan -->
+            <div class="plan-option free-plan" data-plan="Free" data-amount="0" onclick="selectPlan('Free', 0)">
+            <h3>30 Days Free Trial</h3>
+            <div class="price">₵0</div>
+            <div class="period">Limited Features</div>
+            <ul class="features">
+                <li>QR Code Scanning</li>
+                <li>GPS/Geofencing</li>
+                <li>Automated Reports</li>
+                <li>Limited to 10 Users</li>
+            </ul>
+            </div>
+        </div>
+        <div class="renew-section">
+            <p>Already have a subscription? <a href="index.html">Renew Now</a></p>
+        </div>
+    </div>
+
+<!-------Contact Start------->
+<section class="contact section-padding" data-scroll-index='6'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="sectioner-header text-center">
+          <h3>Contact us</h3>
+          <span class="line"></span>
+          <p>Get in touch with us to learn more about how VeriTrack can help your business.</p>
+        </div>
+        <div class="section-content">
+          <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-8 col-lg-6">
+              <div class="contact-info white">
+          <div class="contact-item media"> <i class="fa fa-map-marker-alt media-left media-right-margin"></i>
+            <div class="media-body">
+              <p class="text-uppercase">Address</p>
+              <p class="text-uppercase">Accra, Ghana</p>
+            </div>
+          </div>
+          <div class="contact-item media"> <i class="fa fa-mobile media-left media-right-margin"></i>
+            <div class="media-body">
+              <p class="text-uppercase">Phone</p>
+              <p class="text-uppercase"><a class="text-white" href="tel:+233592548849">+233592548849</a> </p>
+            </div>
+          </div>
+          <div class="contact-item media"> <i class="fa fa-envelope media-left media-right-margin"></i>
+            <div class="media-body">
+              <p class="text-uppercase">E-mail</p>
+              <p class="text-uppercase"><a class="text-white" href="mailto:info.veritrack@gmail.com">info.veritrack@gmail.com</a> </p>
+            </div>
+          </div>
+          <div class="contact-item media"> <i class="fa fa-clock media-left media-right-margin"></i>
+            <div class="media-body">
+              <p class="text-uppercase">Working Hours</p>
+              <p class="text-uppercase">Mon-Fri 9.00 AM to 5.00PM.</p>
+            </div>
+          </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-------Contact End-------> 
+
+<!-------Download End------->
+<section class="download section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="sectioner-header text-center white">
+          <h3>Integrate Our System</h3>
+          <span class="line"></span>
+          <p class="white">Integrate the VeriTrack System and experience the future of attendance management.</p>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="section-content text-center">
+          <ul>
+            <li><a href="#check-In"><img src="images/appstore.png" class="wow fadeInUp" data-wow-delay="0.4s"/></a></li>
+            <li><a href="https://calendly.com/info-veritrack/30min"><img src="images/playstore.png" class="wow fadeInUp" data-wow-delay="0.7s"/></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-------Download End------->
+
+<footer class="footer-copy">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <p>2025 © VeriTrack. All rights reserved. Website Designed by <a href="http://smartlinkco.github.io/portfolio" target="_blank" rel="dofollow">Smartlink Co.</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> 
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+<!-- scrollIt js --> 
+<script src="js/scrollIt.min.js"></script> 
+<script src="js/wow.min.js"></script> 
+<script>
+	wow = new WOW();
+	wow.init();
+$(document).ready(function(e) {
+
+	$('#video-icon').on('click',function(e){
+	e.preventDefault();
+	$('.video-popup').css('display','flex');
+	$('.iframe-src').slideDown();
+	});
+	$('.video-popup').on('click',function(e){
+	var $target = e.target.nodeName;
+	var video_src = $(this).find('iframe').attr('src');
+	if($target != 'IFRAME'){
+	$('.video-popup').fadeOut();
+	$('.iframe-src').slideUp();
+	$('.video-popup iframe').attr('src'," ");
+	$('.video-popup iframe').attr('src',video_src);
+	}
+	});
+
+	$('.slider').bxSlider({
+	pager: false
+	});
+});
+    
+$(window).on("scroll",function () {
+
+	var bodyScroll = $(window).scrollTop(),
+	navbar = $(".navbar");
+	
+	if(bodyScroll > 50){
+	$('.navbar-logo img').attr('src','images/logo-black.png');
+	navbar.addClass("nav-scroll");
+
+}else{
+	$('.navbar-logo img').attr('src','images/logo.png');
+	navbar.removeClass("nav-scroll");
+}
+
+});
+$(window).on("load",function (){
+	var bodyScroll = $(window).scrollTop(),
+	navbar = $(".navbar");
+	
+	if(bodyScroll > 50){
+	$('.navbar-logo img').attr('src','images/logo-black.png');
+	navbar.addClass("nav-scroll");
+	}else{
+	$('.navbar-logo img').attr('src','images/logo-white.png');
+	navbar.removeClass("nav-scroll");
+	}
+
+	$.scrollIt({
+	
+	easing: 'swing',      // the easing function for animation
+	scrollTime: 900,       // how long (in ms) the animation takes
+	activeClass: 'active', // class given to the active nav element
+	onPageChange: null,    // function(pageIndex) that is called when page is changed
+	topOffset: -63
+	});
+});
+
+function selectPlan(plan, amount) {
+            // Redirect to homepage
+            window.location.href = "index.html";
+        }
+</script>
+</body>
+</html>

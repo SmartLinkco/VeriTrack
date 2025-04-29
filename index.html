@@ -127,6 +127,217 @@
       color: #4BB543;
       margin-bottom: 20px;
     }
+    .pricing-container {
+            max-width: 1200px;
+            /* margin: 150px auto; */
+            padding: 120px;
+            background: linear-gradient(to left, #7a60ff, #cd9ffa);
+            background-image: linear-gradient(to left, rgb(122, 96, 255), rgb(205, 159, 250));
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: initial;
+            border: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .pricing-header h1 {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        .plan-selector {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .plan-option {
+            flex: 1 1 calc(25% - 20px);
+            background: #f0f8ff;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .plan-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .plan-option h3 {
+            font-size: 1.5rem;
+            color: #007bff;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .period {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .renew-section {
+            margin-top: 40px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .renew-section a {
+          color: #ffffff;
+          padding: 10px 20px;
+          border: 2px solid #ffffff;
+          border-radius: 7px;
+          margin-top: 30px;
+          display: inline-block;
+          font-size: 18px;
+        }
+
+        .renew-section a:hover {
+          background:#8e1efc;
+          color:#ffffff;
+          border: 2px solid #8e1efc;
+          text-decoration:none;
+        }
+    .plan-option ul.features {
+            list-style: none;
+            padding: 5px;
+            margin: 15px 0 0;
+            text-align: center;
+            background: linear-gradient(to left, #7a60ff, #cd9ffa);
+            background-image: linear-gradient(to left, rgb(122, 96, 255), rgb(205, 159, 250));
+            background-position-x: initial;
+            background-position-y: initial;
+            background-size: initial;
+            background-repeat: initial;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: initial;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .plan-option ul.features li {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 8px;
+            }
+
+            .free-plan {
+            background: #f8f9fa;
+            border: 2px dashed #6c757d;
+            }
+
+            .free-plan:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(108, 117, 125, 0.2);
+            }
+
+            .free-plan h3 {
+            color: #6c757d;
+            }
+
+            .free-plan .price {
+            color: #6c757d;
+            }
+            @media (max-width: 768px) {
+                .pricing-container {
+                    padding: 120px 20px;
+                }
+
+                .plan-selector {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+
+                .plan-option {
+                    flex: 1 1 100%;
+                }
+
+                .pricing-header h1 {
+                    font-size: 1.8rem;
+                }
+
+                .renew-section a {
+                    font-size: 0.9rem;
+                    padding: 8px 16px;
+                }
+
+                .contact-info {
+                    padding: 15px;
+                }
+
+                .contact-item p {
+                    font-size: 0.9rem;
+                }
+
+                .navbar .navbar-brand img {
+                    width: 50px;
+                }
+
+                .navbar-nav .nav-item .nav-link {
+                    font-size: 0.9rem;
+                }
+
+                .download ul li img {
+                    width: 120px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .pricing-header h1 {
+                    font-size: 1.5rem;
+                }
+
+                .plan-option h3 {
+                    font-size: 1.2rem;
+                }
+
+                .price {
+                    font-size: 1.5rem;
+                }
+
+                .period {
+                    font-size: 0.8rem;
+                }
+
+                .plan-option ul.features li {
+                    font-size: 0.8rem;
+                }
+
+                .renew-section a {
+                    font-size: 0.8rem;
+                }
+
+                .contact-item p {
+                    font-size: 0.8rem;
+                }
+
+                .download ul li img {
+                    width: 100px;
+                }
+                .navbar .navbar-brand img {
+                    width: 150px;
+                }
+            }
   </style>
 </head>
 
@@ -140,8 +351,8 @@
         <li class="nav-item"> <a class="nav-link" href="" data-scroll-nav="0">Home</a> </li>
         <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="1">About</a> </li>
         <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="2">Features</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="4">Our Pricing</a> </li>
         <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="3">Team</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="4">Testimonials</a> </li>
         <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="5">Faq</a> </li>
         <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="6">Contact</a> </li>
       </ul>
@@ -205,7 +416,7 @@
               </div>
             </div>
           </div>
-          <a href="#" class="about-btn">Learn More</a> </div>
+          <a href="#" data-scroll-nav="4"  class="about-btn">Our Pricing</a> </div>
       </div>
     </div>
   </div>
@@ -299,6 +510,103 @@
 </section>
 <!-------Features End-------> 
 
+<div class="pricing-container" data-scroll-index='4'>
+  <div class="pricing-header">
+      <h1>Choose Your Perfect Plan</h1>
+  </div>
+  <div class="plan-selector">
+      <!-- Monthly Plan -->
+      <div class="plan-option" data-plan="Monthly" data-amount="200" onclick="selectPlan('Monthly', 200)">
+      <h3>Monthly</h3>
+      <div class="price">₵200</div>
+      <div class="period">per month</div>
+      <ul class="features">
+          <li>Custom Branding</li>
+          <li>QR Code Scanning</li>
+          <li>GPS/Geofencing</li>
+          <li>Automated Reports</li>
+          <li>Payroll Sync</li>
+          <li>Multi-location Support</li>
+          <li>Live Photo Capture</li>
+          <li>Unlimited Users</li>
+      </ul>
+      </div>
+      <hr>
+
+      <!-- Quarterly Plan -->
+      <div class="plan-option" data-plan="Quarterly" data-amount="510" onclick="selectPlan('Quarterly', 510)">
+      <h3>Quarterly</h3>
+      <div class="price">₵510</div>
+      <div class="period">3 months (15% Discount)</div>
+      <ul class="features">
+          <li>Custom Branding</li>
+          <li>QR Code Scanning</li>
+          <li>GPS/Geofencing</li>
+          <li>Automated Reports</li>
+          <li>Payroll Sync</li>
+          <li>Multi-location Support</li>
+          <li>Live Photo Capture</li>
+          <li>Unlimited Users</li>
+      </ul>
+      </div>
+      <hr>
+
+      <!-- Semiannual Plan -->
+      <div class="plan-option" data-plan="Semiannually" data-amount="960" onclick="selectPlan('Semiannually', 960)">
+      <h3>Semiannually</h3>
+      <div class="price">₵960</div>
+      <div class="period">6 months (20% Discount)</div>
+      <ul class="features">
+          <li>Custom Branding</li>
+          <li>QR Code Scanning</li>
+          <li>GPS/Geofencing</li>
+          <li>Automated Reports</li>
+          <li>Payroll Sync</li>
+          <li>Multi-location Support</li>
+          <li>Live Photo Capture</li>
+          <li>Unlimited Users</li>
+      </ul>
+      </div>
+      <hr>
+
+      <!-- Annual Plan -->
+      <div class="plan-option" data-plan="Annual" data-amount="1800" onclick="selectPlan('Annual', 1800)">
+      <h3>Annual</h3>
+      <div class="price">₵1,800</div>
+      <div class="period">per year (2 months free)</div>
+      <ul class="features">
+          <li>Custom Branding</li>
+          <li>QR Code Scanning</li>
+          <li>GPS/Geofencing</li>
+          <li>Automated Reports</li>
+          <li>Payroll Sync</li>
+          <li>Multi-location Support</li>
+          <li>Live Photo Capture</li>
+          <li>Unlimited Users</li>
+      </ul>
+      </div>
+      <hr>
+
+      <!-- Free Plan -->
+      <div class="plan-option free-plan" data-plan="Free" data-amount="0" onclick="selectPlan('Free', 0)">
+      <h3>20 Days Free Trial</h3>
+      <div class="price">₵0</div>
+      <div class="period">Limited Features</div>
+      <ul class="features">
+          <li>No Custom Branding</li>
+          <li>QR Code Scanning</li>
+          <li>GPS/Geofencing</li>
+          <li>Automated Reports</li>
+          <li>Limited to 10 Users</li>
+          <li>Locked to one location </li>
+      </ul>
+      </div>
+  </div>
+  <div class="renew-section">
+      <p>Already have a subscription? <a href="https://script.google.com/macros/s/AKfycbziC740j8BRF_kdyZ53jEahH3P9wNr3TOkipXVA3su66WZ-ZjpR8-lGO8yEK6gwzqva/exec">Renew Now</a></p>
+  </div>
+</div>
+
 <!-------Request Start-------> 
 <section id="check-In"class="request section-padding prelative mobile-padding" data-scroll-index='7'>
 	<div class="form-container">
@@ -310,7 +618,7 @@
 					<p>Let us know your requirements, and we'll tailor a solution to meet your needs.</p>
 				</div>
 				<div class="section-content">
-          <form id="custom_request_form" class="form-body" action="https://script.google.com/macros/s/AKfycbxSNLhtp30laWfDl2VvUujp9uSmf9JMMAvimdH--w1NTO5IzDx-hzT9L95ZRd6W7NFw/exec" method="POST" style="background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <form id="custom_request_form" class="form-body" action="https://script.google.com/macros/s/AKfycbxczbrRSNuku7LxiGg1zIgbOgxcy3IQhgwwzUhtps0KK7fMFO-aVpTVmdH_sfMqOeo3/exec" method="POST" style="background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
             <!-- Client Basics -->
             <h5>1. Client Basics</h5>
             <div class="row">
@@ -412,16 +720,17 @@
               </div>
             </div>
 
-            <!-- Budget & Customization -->
-            <h5>5. Budget & Customization</h5>
+            <!-- Subscriptions -->
+            <h5>5. Subscription Plan</h5>
             <div class="row">
               <div class="col-md-6">
                 <select id="budget_range" class="form-input w-100" name="budget-range" required style="margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-                  <option value="" disabled selected>Budget Range (GHS)</option>
-                  <option value="<1K"><1K</option>
-                  <option value="1K–5K">1K–5K</option>
-                  <option value="5K–10K">5K–10K</option>
-                  <option value="Custom Quote">Custom Quote</option>
+                  <option value="" disabled selected>Subscription Range</option>
+                  <option value="Monthly (₵200 per Month)">Monthly (₵200 per Month)</option>
+                  <option value="Quarterly (₵510 per 3 Months)">Quarterly (₵510 per 3 Months) - 15% Discount</option>
+                  <option value="Semiannually (₵960 per 6 Months)">Semiannually (₵960 per 6 Months) - 20% Discount</option>
+                  <option value="Annually (₵1800 per Year)">Annually (₵1800 per Year) - 2 Months Free</option>
+                  <option value="20 Days Free Trial">20 Days Free Trial</option>
                 </select>
               </div>
               <div class="col-md-6">
@@ -535,7 +844,7 @@
 </section>
 
 <!-------Testimonial Start------->
-<section class="testimonial section-padding" data-scroll-index='4'>
+<section class="testimonial section-padding">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -828,6 +1137,11 @@ document.getElementById('custom_request_form').addEventListener('submit', async 
     submitBtn.textContent = 'Get My Custom Proposal';
   }
 });
+
+function selectPlan(plan, amount) {
+  // Redirect to homepage
+  window.location.href = "#check-In";
+}
 </script>
 </body>
 </html>
