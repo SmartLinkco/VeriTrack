@@ -648,7 +648,7 @@
 					<p>Let us know your requirements, and we'll tailor a solution to meet your needs.</p>
 				</div>
 				<div class="section-content">
-          <form id="custom_request_form" class="form-body" action="https://script.google.com/macros/s/AKfycbxczbrRSNuku7LxiGg1zIgbOgxcy3IQhgwwzUhtps0KK7fMFO-aVpTVmdH_sfMqOeo3/exec" method="POST" style="background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <form id="custom_request_form" class="form-body" action="https://script.google.com/macros/s/AKfycbyI-hKzQfM_wfM3_gzCnu6L8_6rSTOBkYeNozh9POLO_5-1ABnzhqyz4570TLLxAcy-/exec" method="POST" style="background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
             <!-- Client Basics -->
             <h5>1. Client Basics</h5>
             <div class="row">
@@ -773,7 +773,8 @@
             <div class="row">
               <div class="col-md-12">
                 <button id="submission" class="btn-submit btn-grad w-100 text-uppercase" type="submit" name="submit">Get My Custom Proposal</button>
-                <p style="margin-top: 10px; font-size: 12px; color: #555;">Disclaimer: We’ll contact you within 24 hours to discuss your requirements!</p>
+                <p id="alert" style="margin-top: 10px; text-align: center; border-radius: 3px; padding: 5px; font-size: 16px; color: #f81212;"></p>
+                <p style="margin-top: 10px; font-size: 12px; text-align: center; color: #555;">Disclaimer: We’ll contact you within 24 hours to discuss your requirements!</p>
               </div>
             </div>
           </form>
@@ -1116,16 +1117,29 @@ document.getElementById('custom_request_form').addEventListener('submit', async 
   const form = e.target;
   const formData = new FormData(form);
   const submitBtn = document.getElementById('submission');
+  const alertBtn = document.getElementById('alert');
+  const email = formData.get('email'); // Assuming your form has an email field
   
   // Disable button during submission
   submitBtn.disabled = true;
   submitBtn.textContent = 'Submitting...';
   
   try {
-    // Convert form data to JSON
+    // First check if email exists
+    const emailCheckResponse = await checkEmailExists(email);
+    
+    if (emailCheckResponse.exists) {
+      alertBtn.textContent = 'This email is already associated with an existing company. Please use a different email or contact support.';
+      alertBtn.style.backgroundColor = '#f81212';
+      alertBtn.style.color = '#fff';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Get My Custom Proposal';
+      return;
+    }
+
+    // Proceed with form submission if email is new
     const jsonData = {};
     formData.forEach((value, key) => {
-      // Handle checkboxes/multi-select
       if (key.endsWith('[]')) {
         const cleanKey = key.replace('[]', '');
         if (!jsonData[cleanKey]) jsonData[cleanKey] = [];
@@ -1135,7 +1149,6 @@ document.getElementById('custom_request_form').addEventListener('submit', async 
       }
     });
 
-    // Use JSONP proxy to bypass CORS
     const script = document.createElement('script');
     const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
     
@@ -1151,7 +1164,6 @@ document.getElementById('custom_request_form').addEventListener('submit', async 
       }
     };
 
-    // Build the JSONP URL
     const url = new URL(form.action);
     url.searchParams.set('callback', callbackName);
     url.searchParams.set('data', JSON.stringify(jsonData));
@@ -1167,6 +1179,29 @@ document.getElementById('custom_request_form').addEventListener('submit', async 
     submitBtn.textContent = 'Get My Custom Proposal';
   }
 });
+
+// Helper function to check email existence
+function checkEmailExists(email) {
+  return new Promise((resolve, reject) => {
+    const callbackName = 'email_check_callback_' + Math.round(100000 * Math.random());
+    
+    window[callbackName] = function(data) {
+      delete window[callbackName];
+      document.body.removeChild(script);
+      resolve(data);
+    };
+
+    const script = document.createElement('script');
+    const url = new URL('https://script.google.com/macros/s/AKfycbyI-hKzQfM_wfM3_gzCnu6L8_6rSTOBkYeNozh9POLO_5-1ABnzhqyz4570TLLxAcy-/exec');
+    url.searchParams.set('callback', callbackName);
+    url.searchParams.set('action', 'checkEmail');
+    url.searchParams.set('email', email);
+    
+    script.src = url.toString();
+    script.onerror = () => reject(new Error('Email check failed'));
+    document.body.appendChild(script);
+  });
+}
 
 function selectPlan(plan, amount) {
   // Scroll to the section with data-scroll-index='7'
