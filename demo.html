@@ -373,10 +373,16 @@
           <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSekuQBil3CAS35SPBn4BvfQ2tZKH_qElvgzTUa56W9kdvizSg/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" style="border:none;">Loading…</iframe>
         </div>
       </div>
+      <div class="self-made">
+        
+      </div>
       <!-- Google Sheet AJAX Table -->
       <div class="col-md-6 mb-4">
         <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 20px;">
           <h5 class="text-center mb-3">Live Attendance Data</h5>
+          <div class="alert alert-warning text-center mb-3" role="alert" style="font-size: 0.98rem;">
+            <strong>Disclaimer:</strong> Certain credentials such as <b>IP Address</b>, <b>Latitude</b>, <b>Longitude</b>, and <b>Photo ID</b> have been hidden for privacy and security reasons.
+          </div>
           <div id="sheet-table" style="overflow-x:auto;">
             <table class="table table-bordered table-striped" id="attendanceTable">
               <thead>
@@ -386,6 +392,29 @@
                   <th>Name</th>
                   <th>Department</th>
                   <th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="5" class="text-center">Loading data...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Staff Members Table -->
+        <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 20px; margin-top: 30px;">
+          <h5 class="text-center mb-3">Registered Staff Members</h5>
+          <div class="alert alert-warning text-center mb-3" role="alert" style="font-size: 0.98rem;">
+            <strong>Disclaimer:</strong> Certain credentials such as <b>Email Addresses</b>, and <b>Phone Numbers</b> have been hidden for privacy and security reasons.
+          </div>
+          <div id="staff-table" style="overflow-x:auto;">
+            <table class="table table-bordered table-striped" id="staffMembersTable">
+              <thead>
+                <tr>
+                  <th>Staff ID</th>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Office Branch</th>
+                  <th>Timestamp</th>
                 </tr>
               </thead>
               <tbody>
@@ -408,6 +437,7 @@
 // Replace with your public Google Sheet ID and sheet name
 const SHEET_ID = '1lrhRI49jJ_GzT2mHWbHkvpbBBmeMkMhmQT48vcdRol4';
 const SHEET_NAME = 'Attendance Logs'
+const STAFF_SHEET_NAME = 'Staff Members'
 // To access your Google API key:
 // 1. Go to https://console.cloud.google.com/apis/credentials
 // 2. Create or select a project.
@@ -417,6 +447,7 @@ const SHEET_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/val
 
 // If you don't have an API key, you can use the older sheets API with CSV export:
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/1lrhRI49jJ_GzT2mHWbHkvpbBBmeMkMhmQT48vcdRol4/gviz/tq?tqx=out:csv&sheet=Attendance Logs';
+const STAFF_CSV_URL = 'https://docs.google.com/spreadsheets/d/1lrhRI49jJ_GzT2mHWbHkvpbBBmeMkMhmQT48vcdRol4/gviz/tq?tqx=out:csv&sheet=Staff Members';
 
 function csvToArray(str, delimiter = ",") {
   const rows = str.trim().split("\n");
@@ -428,6 +459,7 @@ function csvToArray(str, delimiter = ",") {
 }
 
 $(function() {
+  // Attendance Table
   $.ajax({
     url: CSV_URL,
     dataType: "text",
@@ -445,12 +477,39 @@ $(function() {
             </tr>`;
         }
       } else {
-        html = `<tr><td colspan="3" class="text-center">No data available.</td></tr>`;
+        html = `<tr><td colspan="5" class="text-center">No data available.</td></tr>`;
       }
       $("#attendanceTable tbody").html(html);
     },
     error: function() {
-      $("#attendanceTable tbody").html('<tr><td colspan="3" class="text-center">Unable to load data.</td></tr>');
+      $("#attendanceTable tbody").html('<tr><td colspan="5" class="text-center">Unable to load data.</td></tr>');
+    }
+  });
+
+  // Staff Members Table
+  $.ajax({
+    url: STAFF_CSV_URL,
+    dataType: "text",
+    success: function(data) {
+      const arr = csvToArray(data);
+      let html = "";
+      if (arr.length > 1) {
+        for (let i = 1; i < arr.length; i++) {
+            html += `<tr>
+            <td>${arr[i][0] || ''}</td>
+            <td>${arr[i][1] || ''}</td>
+            <td>${arr[i][2] || ''}</td>
+            <td>${arr[i][4] || ''}</td>
+            <td>${arr[i][5] || ''}</td>
+            </tr>`;
+        }
+      } else {
+        html = `<tr><td colspan="5" class="text-center">No data available.</td></tr>`;
+      }
+      $("#staffMembersTable tbody").html(html);
+    },
+    error: function() {
+      $("#staffMembersTable tbody").html('<tr><td colspan="5" class="text-center">Unable to load data.</td></tr>');
     }
   });
 });
@@ -660,12 +719,39 @@ $(function() {
             </tr>`;
         }
       } else {
-        html = `<tr><td colspan="3" class="text-center">No data available.</td></tr>`;
+        html = `<tr><td colspan="5" class="text-center">No data available.</td></tr>`;
       }
       $("#attendanceTable tbody").html(html);
     },
     error: function() {
-      $("#attendanceTable tbody").html('<tr><td colspan="3" class="text-center">Unable to load data.</td></tr>');
+      $("#attendanceTable tbody").html('<tr><td colspan="5" class="text-center">Unable to load data.</td></tr>');
+    }
+  });
+
+  // Staff Members Table
+  $.ajax({
+    url: STAFF_CSV_URL,
+    dataType: "text",
+    success: function(data) {
+      const arr = csvToArray(data);
+      let html = "";
+      if (arr.length > 1) {
+        for (let i = 1; i < arr.length; i++) {
+            html += `<tr>
+            <td>${arr[i][0] || ''}</td>
+            <td>${arr[i][1] || ''}</td>
+            <td>${arr[i][2] || ''}</td>
+            <td>${arr[i][4] || ''}</td>
+            <td>${arr[i][5] || ''}</td>
+            </tr>`;
+        }
+      } else {
+        html = `<tr><td colspan="5" class="text-center">No data available.</td></tr>`;
+      }
+      $("#staffMembersTable tbody").html(html);
+    },
+    error: function() {
+      $("#staffMembersTable tbody").html('<tr><td colspan="5" class="text-center">Unable to load data.</td></tr>');
     }
   });
 });
