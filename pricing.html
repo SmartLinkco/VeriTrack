@@ -128,7 +128,6 @@
       margin-bottom: 20px;
     }
     .pricing-container {
-            max-width: 1200px;
             /* margin: 150px auto; */
             padding: 120px;
             background: linear-gradient(to left, #7a60ff, #cd9ffa);
@@ -356,7 +355,108 @@
     </div>
   </div>
 </nav>
-<!-- End Navbar -->   
+<!-- End Navbar --> 
+ 
+<!-- Demo Live Presentation Section Start -->
+<section class="demo-live section-padding" style="background: #f4f6fa; padding: 60px 0;">
+  <div class="container">
+    <div class="sectioner-header text-center">
+      <h3>Demo Live Presentation</h3>
+      <span class="line"></span>
+      <p>Experience VeriTrack's Attendance System in action. Submit a demo check-in, view real-time attendance data, and access the check-in/checkout portal.</p>
+    </div>
+    <div class="row">
+      <!-- Google Form Embed -->
+      <div class="col-md-6 mb-4">
+        <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 20px;">
+          <h5 class="text-center mb-3">Demo Check-In Form</h5>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSekuQBil3CAS35SPBn4BvfQ2tZKH_qElvgzTUa56W9kdvizSg/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" style="border:none;">Loading…</iframe>
+        </div>
+      </div>
+      <!-- Google Sheet AJAX Table -->
+      <div class="col-md-6 mb-4">
+        <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 20px;">
+          <h5 class="text-center mb-3">Live Attendance Data</h5>
+          <div id="sheet-table" style="overflow-x:auto;">
+            <table class="table table-bordered table-striped" id="attendanceTable">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Staff ID</th>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="5" class="text-center">Loading data...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Check-In/Checkout Portal Button -->
+    <div class="text-center mt-4">
+      <a href="https://script.google.com/macros/s/AKfycbwJf7bKfwGAZc_Az2VJMngvkwC8-uRCGgEo0CZLQTU72F3iUmlxhJarDDvsnwhgFiip/exec" class="btn btn-submit" style="font-size:1.1rem;">Go to Check-In/Checkout Portal</a>
+    </div>
+  </div>
+</section>
+<!-- Demo Live Presentation Section End -->
+
+<script>
+// Replace with your public Google Sheet ID and sheet name
+const SHEET_ID = '1lrhRI49jJ_GzT2mHWbHkvpbBBmeMkMhmQT48vcdRol4';
+const SHEET_NAME = 'Attendance Logs'
+// To access your Google API key:
+// 1. Go to https://console.cloud.google.com/apis/credentials
+// 2. Create or select a project.
+// 3. Click "Create credentials" > "API key".
+// 4. Copy the generated API key and replace YOUR_GOOGLE_API_KEY below.
+const SHEET_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME}?alt=json&key=AIzaSyAD4chuMyFyFyQvuC4_F_dTupetsNOmwWQ`;
+
+// If you don't have an API key, you can use the older sheets API with CSV export:
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/1lrhRI49jJ_GzT2mHWbHkvpbBBmeMkMhmQT48vcdRol4/gviz/tq?tqx=out:csv&sheet=Attendance Logs';
+
+function csvToArray(str, delimiter = ",") {
+  const rows = str.trim().split("\n");
+  return rows.map(row => {
+    // Handle quoted fields with commas
+    const re = /(".*?"|[^",\s]+)(?=\s*,|\s*$)/g;
+    return [...row.matchAll(re)].map(x => x[0].replace(/^"|"$/g, ""));
+  });
+}
+
+$(function() {
+  $.ajax({
+    url: CSV_URL,
+    dataType: "text",
+    success: function(data) {
+      const arr = csvToArray(data);
+      let html = "";
+      if (arr.length > 1) {
+        for (let i = 1; i < arr.length; i++) {
+            html += `<tr>
+            <td>${arr[i][0] || ''}</td>
+            <td>${arr[i][1] || ''}</td>
+            <td>${arr[i][2] || ''}</td>
+            <td>${arr[i][3] || ''}</td>
+            <td>${arr[i][4] || ''}</td>
+            </tr>`;
+        }
+      } else {
+        html = `<tr><td colspan="3" class="text-center">No data available.</td></tr>`;
+      }
+      $("#attendanceTable tbody").html(html);
+    },
+    error: function() {
+      $("#attendanceTable tbody").html('<tr><td colspan="3" class="text-center">Unable to load data.</td></tr>');
+    }
+  });
+});
+</script>
+
+
     <div class="pricing-container">
         <div class="pricing-header">
             <h1>Our Subscription Model</h1>
@@ -540,9 +640,40 @@
 <!-- scrollIt js --> 
 <script src="js/scrollIt.min.js"></script> 
 <script src="js/wow.min.js"></script> 
+
 <script>
-	wow = new WOW();
-	wow.init();
+$(function() {
+  $.ajax({
+    url: CSV_URL,
+    dataType: "text",
+    success: function(data) {
+      const arr = csvToArray(data);
+      let html = "";
+      if (arr.length > 1) {
+        for (let i = 1; i < arr.length; i++) {
+            html += `<tr>
+            <td>${arr[i][0] || ''}</td>
+            <td>${arr[i][1] || ''}</td>
+            <td>${arr[i][2] || ''}</td>
+            <td>${arr[i][3] || ''}</td>
+            <td>${arr[i][4] || ''}</td>
+            </tr>`;
+        }
+      } else {
+        html = `<tr><td colspan="3" class="text-center">No data available.</td></tr>`;
+      }
+      $("#attendanceTable tbody").html(html);
+    },
+    error: function() {
+      $("#attendanceTable tbody").html('<tr><td colspan="3" class="text-center">Unable to load data.</td></tr>');
+    }
+  });
+});
+</script>
+
+<script>
+  wow = new WOW();
+  wow.init();
 $(document).ready(function(e) {
 
 	$('#video-icon').on('click',function(e){
