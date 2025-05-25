@@ -344,13 +344,13 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"> <a class="nav-link" href="index.html" data-scroll-nav="0">Home</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="1">About</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="2">Features</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="3">Team</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="pricing.html">Our Pricing</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="5">Faq</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="6">Contact</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="index.html">Home</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="index.html#about">About</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="index.html#features">Features</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="index.html#team" >Team</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#pricing" data-scroll-nav="5">Our Pricing</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="index.html#faq" data-scroll-nav="5">Faq</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#contact" data-scroll-nav="6">Contact</a> </li>
       </ul>
     </div>
   </div>
@@ -365,6 +365,10 @@
       <span class="line"></span>
       <p>Experience VeriTrack's Attendance System in action. Submit a demo check-in, view real-time attendance data, and access the check-in/checkout portal.</p>
     </div>
+    <!-- Check-In/Checkout Portal Button -->
+    <div class="text-center mt-4" style="margin-bottom: 30px;">
+      <a href="https://script.google.com/macros/s/AKfycbwJf7bKfwGAZc_Az2VJMngvkwC8-uRCGgEo0CZLQTU72F3iUmlxhJarDDvsnwhgFiip/exec" class="btn btn-submit" style="font-size:1.1rem;">Go to Check-In/Checkout Portal</a>
+    </div>
     <div class="row">
       <!-- Google Form Embed -->
       <div class="col-md-6 mb-4">
@@ -378,7 +382,30 @@
       </div>
       <!-- Google Sheet AJAX Table -->
       <div class="col-md-6 mb-4">
+        <!-- Staff Members Table -->
         <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 20px;">
+          <h5 class="text-center mb-3">Registered Staff Members</h5>
+          <div class="alert alert-warning text-center mb-3" role="alert" style="font-size: 0.98rem;">
+            <strong>Disclaimer:</strong> Certain credentials such as <b>Email Address</b> and <b>Phone Number</b> have been hidden for privacy and security reasons.
+          </div>
+          <div id="staff-table" style="overflow-x:auto;">
+            <table class="table table-bordered table-striped" id="staffMembersTable">
+              <thead>
+                <tr>
+                  <th>Staff ID</th>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Office Branch</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="5" class="text-center">Loading data...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 20px; margin-top: 30px;">
           <h5 class="text-center mb-3">Live Attendance Data</h5>
           <div class="alert alert-warning text-center mb-3" role="alert" style="font-size: 0.98rem;">
             <strong>Disclaimer:</strong> Certain credentials such as <b>IP Address</b>, <b>Latitude</b>, <b>Longitude</b>, and <b>Photo ID</b> have been hidden for privacy and security reasons.
@@ -400,35 +427,9 @@
             </table>
           </div>
         </div>
-        <!-- Staff Members Table -->
-        <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 20px; margin-top: 30px;">
-          <h5 class="text-center mb-3">Registered Staff Members</h5>
-          <div class="alert alert-warning text-center mb-3" role="alert" style="font-size: 0.98rem;">
-            <strong>Disclaimer:</strong> Certain credentials such as <b>Email Addresses</b>, and <b>Phone Numbers</b> have been hidden for privacy and security reasons.
-          </div>
-          <div id="staff-table" style="overflow-x:auto;">
-            <table class="table table-bordered table-striped" id="staffMembersTable">
-              <thead>
-                <tr>
-                  <th>Staff ID</th>
-                  <th>Name</th>
-                  <th>Department</th>
-                  <th>Office Branch</th>
-                  <th>Timestamp</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td colspan="5" class="text-center">Loading data...</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
     </div>
-    <!-- Check-In/Checkout Portal Button -->
-    <div class="text-center mt-4">
-      <a href="https://script.google.com/macros/s/AKfycbwJf7bKfwGAZc_Az2VJMngvkwC8-uRCGgEo0CZLQTU72F3iUmlxhJarDDvsnwhgFiip/exec" class="btn btn-submit" style="font-size:1.1rem;">Go to Check-In/Checkout Portal</a>
-    </div>
+    
   </div>
 </section>
 <!-- Demo Live Presentation Section End -->
@@ -516,7 +517,7 @@ $(function() {
 </script>
 
 
-    <div class="pricing-container">
+    <div id="Pricing" class="Pricing pricing-container" data-scroll-nav="5">
         <div class="pricing-header">
             <h1>Our Subscription Model</h1>
         </div>
@@ -608,7 +609,7 @@ $(function() {
     </div>
 
 <!-------Contact Start------->
-<section class="contact section-padding" data-scroll-index='6'>
+<section id="contact" class="contact section-padding" data-scroll-index='6'>
   <div class="container">
     <div class="row">
       <div class="col-md-12">
