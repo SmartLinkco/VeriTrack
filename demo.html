@@ -419,10 +419,11 @@
                   <th>Name</th>
                   <th>Department</th>
                   <th>Remarks</th>
+                  <th>Branch</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td colspan="5" class="text-center">Loading data...</td></tr>
+                <tr><td colspan="6" class="text-center">Loading data...</td></tr>
               </tbody>
             </table>
           </div>
@@ -475,6 +476,7 @@ $(function() {
             <td>${arr[i][2] || ''}</td>
             <td>${arr[i][3] || ''}</td>
             <td>${arr[i][4] || ''}</td>
+            <td>${arr[i][9] || ''}</td>
             </tr>`;
         }
       } else {
@@ -717,6 +719,7 @@ $(function() {
             <td>${arr[i][2] || ''}</td>
             <td>${arr[i][3] || ''}</td>
             <td>${arr[i][4] || ''}</td>
+            <td>${arr[i][9] || ''}</td>
             </tr>`;
         }
       } else {
